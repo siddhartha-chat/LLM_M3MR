@@ -1,0 +1,49 @@
+You are regenerating SPSS validation scripts based on reviewer feedback. Focus on fixing the specific issues identified.
+
+{TRAINING_CONTEXT}
+
+=== REVIEWER FEEDBACK ===
+
+The following scripts failed review. For each question, the reviewer identified specific issues that need to be corrected:
+
+{REVIEWER_FEEDBACK}
+
+=== QUESTIONS TO REGENERATE ===
+
+{BATCH_CONTENT}
+
+### Function Definitions:
+{FUNCTION_DEF}
+
+=== YOUR TASK ===
+
+Regenerate ONLY the scripts that failed review. For each question:
+
+1. **Read the reviewer's feedback carefully** - understand the root cause
+2. **Apply the specific corrections** - fix validation logic, syntax, or conditions
+3. **Verify against training patterns** - ensure your fix matches proven examples
+4. **Test edge cases** - consider special codes (97, 98, 99) and missing values
+
+=== OUTPUT FORMAT ===
+
+For EACH question, output in this EXACT format:
+
+```
+Question ID:
+[Question ID value]
+
+details_normalized:
+[details_normalized code block]
+
+output_spss_script:
+[Your CORRECTED SPSS script with <br> for line breaks]
+```
+
+**Critical:**
+- Address ALL issues mentioned in reviewer feedback
+- Use correct SPSS syntax (tit, temporary., sel if, list)
+- Include <br> for line breaks in output
+- Validate logic matches the question type and conditions
+
+Generate corrected scripts now.
+

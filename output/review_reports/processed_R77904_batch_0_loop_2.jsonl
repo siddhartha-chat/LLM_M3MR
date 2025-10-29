@@ -1,0 +1,19 @@
+{"question_id": "SI1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "SI2", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "S0c", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "FR1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "qCountry", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "SI1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "SI2", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "SUS1a", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "S0c", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "FR1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "SI2", "pass": false, "root_causes": ["The script uses a hard-coded set of qCountry values (7, 12, 16, 10, 2057) to define EU membership instead of using the expected isEU() definition; this is likely incomplete/incorrect and may miss EU countries.", "The computed flt logic depends on the qCountry codes being correct; if the code list does not exactly match the isEU() list, EU respondents may be misclassified and validation results will be wrong."], "instructions": ["Replace the hard-coded qCountry condition with the canonical isEU() check used in the project. For example: compute flt = 0. if (isEU()) flt = 1.", "If isEU() cannot be used, replace the current qCountry list with the full, authoritative list of qCountry codes that define EU membership (i.e., exactly mirror the isEU() mapping). Ensure all EU country codes are included.", "After fixing flt assignment, keep the existing selection logic for flagging: (flt = 1 and (miss(SI2) and not any(SI2,97,98,99) or SI2 = 2)) or (flt = 0 and not miss(SI2) and not any(SI2,97,98,99))."]}
+{"question_id": "qCountry", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "SI1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "SI2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "SUS1a", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S0c", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "FR1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "qCountry", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "SI1", "pass": true, "root_causes": [], "instructions": []}

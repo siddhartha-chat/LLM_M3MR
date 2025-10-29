@@ -1,0 +1,9 @@
+{"question_id": "A1x1", "pass": false, "root_causes": ["Script does not remove/clean-up the helper variables (flt_A1x1, flag_a1x1, t_A1x1_*, sumA1x1) as required by step 5 of the expected logic."], "instructions": ["After the checks/listings, explicitly remove the helper and mask variables. Add an SPSS command such as: DELETE VARIABLES flt_A1x1 flag_a1x1 sumA1x1 t_A1x1_51 t_A1x1_1 t_A1x1_52 t_A1x1_54 t_A1x1_53 t_A1x1_7 t_A1x1_2 t_A1x1_3 t_A1x1_4 t_A1x1_56 t_A1x1_5 t_A1x1_6 t_A1x1_8 t_A1x1_9.", "Place the DELETE VARIABLES command after the final listing/execution (after exe.) so that helper variables are available during validation but removed from the working dataset afterwards."]}
+{"question_id": "S5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6a", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS7Vals", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6a", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS7Vals", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}

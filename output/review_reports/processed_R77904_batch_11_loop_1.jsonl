@@ -1,0 +1,22 @@
+{"question_id": "B1cx4", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B1cx5", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B1cx4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cx5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cx4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cx5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B1cDKx4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidA1ARPIS", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A3x1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A3x2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x5", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidA1ARPIS", "pass": false, "root_causes": ["Entry condition 'isTest()' from expected logic is not reflected: the validation runs unconditionally instead of only in test mode.", "No upper-bound validation present: expected had UpperLimitType='SmallerOrEqual' (implying an upper bound) but the script only checks for negative values and does not enforce any maximum or precision constraints."], "instructions": ["Apply the test-mode entry condition so checks run only when isTest() is true. For example, add the test flag to the selection clause (e.g. sel if isTest() & (_hidA1arpis_any = 1) & (...)).", "If an upper limit exists, add checks for values greater than that upper limit (e.g. (HidA1ARPIS_1 > <UPPER>) or ...). If no explicit upper limit was provided, confirm expected maximum and implement it.", "If precision must be enforced (Precision = 4), add checks to detect values with more than 4 decimal places or otherwise validate numeric precision as required."]}
+{"question_id": "A3x1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "A3x2", "pass": true, "root_causes": [], "instructions": []}

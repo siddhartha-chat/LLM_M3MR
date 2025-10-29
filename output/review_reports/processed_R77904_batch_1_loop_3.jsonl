@@ -1,0 +1,17 @@
+{"question_id": "FR2", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "IT1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "UK1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "US1", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "US2", "pass": false, "root_causes": ["Could not parse review response"], "instructions": ["Regenerate and review again"]}
+{"question_id": "FR2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "IT1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "ES1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "UK1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "US1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "US2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "FR2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "IT1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "ES1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "UK1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US2", "pass": true, "root_causes": [], "instructions": []}

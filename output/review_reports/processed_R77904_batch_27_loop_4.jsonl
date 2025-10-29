@@ -1,0 +1,3 @@
+{"question_id": "qList", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "qList", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "hidTier", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}

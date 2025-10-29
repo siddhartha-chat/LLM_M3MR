@@ -1,0 +1,60 @@
+You are given training files for learning how to generate SPSS validation scripts:
+
+1. **Markdown (*.md) files** with two main sections:
+   ## Sheet1
+   - Question ID:            (input)
+   - details_normalized:     (input — JSON-like structure; flatten and decode each attribute. Each attribute is a key for generating the output_spss_script. If you notice any function, check the matching "Function Name:" in the "## function_def" section.)
+   - output_spss_script:     (target — expected IBM SPSS script for the input)
+
+   ## function_def
+   - Function Name:
+   - Function Definition:
+
+2. **macro.txt file**:
+   - Contains a list of reusable SPSS macros and their script definitions.
+   - These macros are sometimes referenced in the "output_spss_script" column of ## Sheet1.
+   - You must learn when and how macros are invoked instead of writing raw SPSS commands.
+
+⚡ **Purpose of this step:**
+This prompt is ONLY for analyzing and understanding the training data. Do not generate new SPSS scripts yet. In the same session, further instructions will be provided to actually generate the outputs.
+
+📂 **Training File Structure:**
+- Markdown files:
+  - "## Sheet1" with Question ID, details_normalized, and output_spss_script
+  - "## function_def" with function names and definitions
+- macro.txt file:
+  - Macro names and their corresponding SPSS script definitions
+
+📝 **Context:**
+- The original Confirmit XML exports are unstructured and vary across surveys.
+- The normalized details are captured in "details_normalized" under ## Sheet1.
+- In most cases, the mapping from "details_normalized" → "output_spss_script" can be learned directly from ## Sheet1.
+- If "details_normalized" contains a function call, refer to ## function_def.
+- If "output_spss_script" uses a macro, refer to macro.txt to understand when and why the macro is applied.
+- Apply IBM SPSS scripting knowledge (e.g., COMPUTE, IF, RECODE, VALUE LABELS, VARIABLE LABELS, DO IF/END IF, MISSING VALUES, macros) to understand how the normalized details translate into valid and optimized SPSS syntax.
+
+🎯 **Task for this step:**
+1. Carefully analyze the relationship between:
+   - "details_normalized" in ## Sheet1
+   - "function_def" (only when functions are referenced in "details_normalized")
+   - "macro.txt" (when macros are invoked in output_spss_script)
+   - the corresponding "output_spss_script" in ## Sheet1
+2. Flatten and decode all attributes in "details_normalized" to understand conditions, ranges, codes, and logic.
+3. Learn how macros are substituted or invoked in place of raw SPSS commands.
+4. Build an internal understanding of how the mapping works, including when to optimize scripts by using macros or efficient SPSS syntax.
+5. Do not attempt to generate new "output_spss_script" values yet. Simply prepare the reasoning framework so that in the next step, when only "Question ID", "details_normalized", "function_def", and "macro.txt" are provided, you can generate the correct and optimized "output_spss_script".
+
+✅ **Expected Behavior:**
+- At this stage: confirm understanding of the training data and explain the mapping logic you infer from "details_normalized", "function_def", and "macro.txt".
+- Explicitly leverage IBM SPSS scripting knowledge to interpret how attributes, functions, and macros map into optimized SPSS commands.
+- In the next stage: you will be asked to generate the "output_spss_script" for new inputs using the learned patterns, macros, and SPSS syntax rules.
+
+=== TRAINING DATA ===
+
+MARKDOWN FILES:
+{TRAINING_DATA}
+
+MACRO FILE:
+{MACRO_DATA}
+
+Please confirm your understanding of the training data patterns and explain the key mapping rules you've identified.

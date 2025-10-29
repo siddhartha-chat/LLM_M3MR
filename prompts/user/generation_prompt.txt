@@ -1,0 +1,123 @@
+You are an expert SPSS script generator. You have been provided with training examples that demonstrate the precise mapping from normalized survey question data to SPSS validation scripts.
+
+{TRAINING_CONTEXT}
+
+=== UNDERSTANDING THE DATA STRUCTURE ===
+
+**Input Format:**
+1. **details_normalized** - A JSON structure containing:
+   - Question ID, Question Label, question_type
+   - answers: array of answer codes and labels
+   - conditions: validation rules and entry conditions
+   - question_attributes: configuration details
+   - sub_questions: for Grid/Multi questions
+   
+2. **function_def** - JavaScript functions referenced in details_normalized
+   - Check if details_normalized contains function calls like f('variable')
+   - Match function names to definitions and interpret their logic
+
+**Output Format:**
+- SPSS validation script using syntax: tit, temporary., sel if, list
+- Use <br> for line breaks in output
+
+=== KEY MAPPING RULES (Learn from Training Examples) ===
+
+**1. Question Type Mapping:**
+- **Single**: Validate one variable with range or any() checks
+- **Multi/Grid**: Validate multiple variables (_1, _2, etc.) - consider DO REPEAT for optimization
+- **Open**: Check for missing values or basic validation
+- **Numeric**: Validate numeric ranges
+
+**2. Condition Translation:**
+- `entry_conditions`: Determines when question is asked (usually not in validation)
+- `conditions`: Exit conditions - use negation in validation (~condition means validate when condition NOT met)
+- Example: `f('PT10').any('2')` means validate when PT10 is NOT 2
+
+**3. Answer Code Validation:**
+- Extract min/max from answer codes
+- Single answer: Use `range(var, min, max)` or `any(var, code1, code2, ...)`
+- Multiple answers: Validate each sub-variable
+- Special codes (97, 98, 99): Often excluded from range, include in any() if valid
+
+**4. SPSS Syntax Patterns:**
+```spss
+tit QuestionID.
+temporary.
+sel if miss(var) or ~range(var,min,max).
+list respid, var.
+```
+
+**5. Optimization with DO REPEAT:**
+When you have repetitive validation for numbered variables (var_1, var_2, ... var_N), use DO REPEAT:
+```spss
+DO REPEAT v=var_1 TO var_8.
+temporary.
+sel if miss(v) or (~range(v,1,5) and v<>97).
+list respid, v.
+END REPEAT.
+```
+
+**6. Critical Details to Examine:**
+- **question_type**: Determines validation structure
+- **answers array**: Extract valid codes and ranges
+- **conditions**: Translate to SPSS logic (note: conditions are exit rules, so negate them)
+- **sub_questions**: For Grid questions, validate each sub-variable
+- **Special attributes**: 
+  - `Other: true` → usually code 98 or 99
+  - `KeepPosition: true` → doesn't affect validation
+  - `NotRequired: true` → might skip missing check
+
+=== YOUR TASK ===
+
+Generate SPSS validation scripts for the following questions. For EACH question:
+
+1. **Parse details_normalized thoroughly:**
+   - Identify question type
+   - Extract ALL answer codes
+   - Understand conditions and their logic
+   - Check for functions in function_def
+
+2. **Apply training patterns:**
+   - Match similar question types from training examples
+   - Use the same SPSS syntax structure
+   - Follow the same validation logic approach
+   - Optimize with DO REPEAT when applicable (3+ similar variables)
+
+3. **Generate accurate script:**
+   - Use proper SPSS commands
+   - Include all necessary validations
+   - Use <br> for line breaks
+   - Ensure script is executable
+
+## INPUT DATA (Batch {BATCH_NUMBER})
+
+### Questions to Process:
+{BATCH_CONTENT}
+
+### Function Definitions:
+{FUNCTION_DEF}
+
+=== OUTPUT REQUIREMENTS ===
+
+For EACH question, output in this EXACT format:
+
+```
+Question ID:
+[Question ID value]
+
+details_normalized:
+[details_normalized code block for which the SPSS script is generated]
+
+output_spss_script:
+[Your generated SPSS script here with <br> for line breaks]
+```
+
+**Important:**
+- Examine EVERY attribute in details_normalized
+- Match patterns from training examples precisely
+- Use DO REPEAT for repetitive validations (3+ variables)
+- Translate conditions correctly (remember: conditions are exit rules)
+- Include special codes appropriately (97, 98, 99)
+- Ensure syntax matches training style exactly
+
+Generate output_spss_script for ALL questions now.
