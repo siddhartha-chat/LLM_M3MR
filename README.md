@@ -45,6 +45,8 @@ ENABLE_SMART_RETRIES=true
 PROGRESSIVE_CONTEXT_REDUCTION=true
 ENABLE_COT=true
 ENABLE_ANTI_PATTERNS=true
+
+INPUT_FILE_NAME=R77904.md
 ```
 
 ### 3. Install Dependencies
@@ -114,7 +116,8 @@ All settings can be adjusted via environment variables in `.env`:
 | `MODEL` | `gpt-5-mini` | OpenAI model to use |
 | `MAX_QUESTIONS` | `4` | Questions per batch |
 | `MAX_FEEDBACK_LOOPS` | `7` | Max regeneration attempts |
-|`MAX_CONCURRENT_REQUESTS` | `5` | Max questions to send for generation in one batch |
+|`MAX_PARALLEL_BATCHES` | `10` | Max questions to send for generation in one batch |
+|`MAX_CONCURRENT_REQUESTS` | `5` | Max concurrent API calls |
 | `GLOBAL_RATE_LIMIT_DELAY` | `1` | Seconds between API calls |
 | `TRAINING_CONTEXT_FIRST_BATCH_CHARS` | `80000` | Max input charecters for training context for first attempt at generation|
 | `TRAINING_CONTEXT_OTHER_BATCH_CHARS` | `60000` | Max input charecters for training context for following attempt at regeneration |
@@ -124,6 +127,7 @@ All settings can be adjusted via environment variables in `.env`:
 | `ENABLE_ANTI_PATTERNS` | `true` | Enable anti pattern |
 | `CALL_TIMEOUT_SECONDS` | `75` | To manage time out delay |
 |`INCLUDE_TRAINING_IN_ALL` | `true` | To share training context in all iterations for a batch |
+|`INPUT_FILE_NAME` |`R77904.md` | file to be converted  |
 
 
 ## 📤 Output
