@@ -1,0 +1,1 @@
+{"question_id": "A4x1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}

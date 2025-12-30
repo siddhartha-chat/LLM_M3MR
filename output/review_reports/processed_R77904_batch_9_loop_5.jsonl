@@ -1,0 +1,4 @@
+{"question_id": "S9US", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S9AU", "pass": false, "root_causes": ["Missing entry condition restricting validation to respondents where qCountry = 3081 (Australia).", "Validation includes special codes 97, 98, 99 that are not listed in the expected answer set."], "instructions": ["Restrict the validation so it only runs for respondents from Australia. Example SPSS approach: temporary. sel if qCountry = 3081 & (miss(S9AU) or ~any(S9AU,52,53,54,55,56,57,58,59)). list respid, S9AU.", "If special codes 97/98/99 are not defined for this question in the survey metadata, remove them from the any() check. If they are valid, document their meanings and keep them in the allowed list."]}
+{"question_id": "HidScrQs", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidScrQsCnts", "pass": true, "root_causes": [], "instructions": []}

@@ -1,0 +1,39 @@
+{"question_id": "HidS1Group1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group2", "pass": false, "root_causes": ["Temporary/check variable HidS1Group2_chk is not removed after the check (cleanup step missing).", "HidS1Group2_chk is computed for all cases rather than being limited to test-mode cases (compute occurs outside the qTesting gating)."], "instructions": ["After the LIST step, remove the temporary check variable: add a line such as DELETE VARIABLES HidS1Group2_chk. This ensures the chk variable does not remain in the dataset.", "Limit creation of HidS1Group2_chk to test-mode (qTesting = 1) or explicitly remove it after use. Either wrap the compute/mapping in a DO IF (qTesting = 1) ... END IF block or keep the compute where it is but ensure DELETE VARIABLES HidS1Group2_chk is executed immediately after the listing so the variable does not persist.", "If SPECIALTY=98 should map to code 2, add 98 to the ONC mapping (e.g. if any(SPECIALTY,2,3,4,6,98) HidS1Group2_chk = 2). If 98 should remain unmapped, remove 98 from the allowed-values check in the sel if clause."]}
+{"question_id": "S0b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "SPECIALTY", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group1", "pass": false, "root_causes": ["The selection logic flags missing responses even though the question is NotRequired. The clause (not any(HidS1Group1,1,2,3,97,98,99)) evaluates true for system-missing, so missing cases are selected.", "Because missing cases are selected, the script contradicts the NotRequired = true requirement (should not flag missing)."], "instructions": ["Do not flag system-missing responses. Change the selection clause so that invalid-code checks only run for non-missing HidS1Group1. Replace (not any(HidS1Group1,1,2,3,97,98,99)) with (not miss(HidS1Group1) & not any(HidS1Group1,1,2,3,97,98,99)).", "Keep the mismatch check (any(HidS1Group1,1,2,3) & HidS1Group1_chk <> HidS1Group1) as-is so that only coded answers 1-3 are compared against the computed mapping.", "No change needed for special codes handling (97,98,99) — they are already allowed in the validation set."]}
+{"question_id": "HidS1Group2", "pass": false, "root_causes": ["The script flags missing HidS1Group2 (miss(HidS1Group2)) even though the question attribute NotRequired=true — missing should not be treated as an error.", "The mapping from SPECIALTY codes to groups (if any) is not present in the EXPECTED_LOGIC. The transformer hard-coded lists (SPECIALTY 1,5 -> 1; 2,3,4,6,7 -> 2) may be incorrect or unverified against the expected mapping.", "Unclear treatment of special codes 97/98/99: expected logic did not list them explicitly; script allows them but this should be confirmed."], "instructions": ["Do not flag missing HidS1Group2 responses because question attribute NotRequired=true. Remove miss(HidS1Group2) from the sel if condition. For example, use: sel if isTest() & ( not any(HidS1Group2,1,2,97,98,99) or ( any(HidS1Group2,1,2) & HidS1Group2_chk <> HidS1Group2 ) ).", "Confirm the correct mapping between SPECIALTY codes and HidS1Group2. If mappings are provided, update the if any(SPECIALTY,...) statements to exactly match those mappings. If no mapping is intended, do not compute or compare HidS1Group2_chk.", "Confirm whether special codes 97/98/99 should be accepted as valid. If they should not be accepted, remove them from the valid-value check (not any(HidS1Group2,1,2,97,98,99)). If they are valid, keep them.", "Ensure HidS1Group2_chk remains system-missing for specialties that are intentionally unmapped so that no false mismatches are flagged for those cases."]}
+{"question_id": "S0b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S0b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "SPECIALTY", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S0b", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "SPECIALTY", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S1b", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S1c", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS1Group1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS1Group2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S0b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "SPECIALTY", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S1b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S1c", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S0b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "SPECIALTY", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S1b", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S1c", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS1Group2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "ES1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "UK1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "ES1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "UK1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "US2", "pass": true, "root_causes": [], "instructions": []}

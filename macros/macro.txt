@@ -1,0 +1,155 @@
+## Macro
+**************** Procedure to check Multi Punch Questions ****************************.
+Define !MULTI_A (svar !TOKENS (1) /evar !TOKENS (1) /qnt !TOKENS (1) /ctr !TOKENS (1))
+
+count var_cnt = !svar to !evar(1).
+
+tit !qnt - Nothing Selected.
+sel if var_cnt = 0.
+list record, !svar to !evar.
+
+tit !qnt - Invalid Punches.
+temporary.
+count var1_cnt = !svar to !evar(0 1).
+sel if var1_cnt <>  !ctr.
+list record, !svar to !evar.
+temporary.
+count var1_cnt = !svar to !evar(1).
+sel if var1_cnt =  !ctr.
+tit !qnt - Error Flag-ALL Respondents have punch 1 ONLY.
+list record, !svar to !evar.
+!EndDefine.
+
+**************** Procedure to check Multi Punch Questions ****************************.
+Define !MULTI_B (svar !TOKENS (1) /evar !TOKENS (1) /qnt !TOKENS (1) /ctr !TOKENS (1))
+
+count var_cnt = !svar to !evar(1).
+
+tit !qnt - Nothing Selected.
+sel if var_cnt = 0.
+list record, !svar to !evar.
+
+tit !qnt - Invalid Punches.
+count var1_cnt = !svar to !evar(0 1).
+temporary.
+sel if var1_cnt <>  !ctr.
+list record, !svar to !evar.
+
+tit !qnt - None/DK selected with valid codes.
+count var_cnt = !svar to !evar(1).
+temporary.
+sel if var_cnt > 1 and !evar=1.
+list record, !svar to !evar.
+temporary.
+count var1_cnt = !svar to !evar(1).
+sel if var1_cnt =  !ctr.
+tit !qnt - Error Flag-ALL Respondents have punch 1 ONLY.
+list record, !svar to !evar.
+!EndDefine.
+
+
+*** To be use in case of check Sum must equal to 100 OR Sum atleast to 100% OR atleast SUM to response from other data variable**.
+                                                                                                                                  
+Define !Sum_to_var (svar !TOKENS (1) /evar !TOKENS (1) /qnt !TOKENS (1) /ctr !TOKENS (1) /opr !TOKENS (1))                        
+                                                                                                                                  
+compute SumX=sum(!svar to !evar).                                                                                                 
+exe.                                                                                                                              
+                                                                                                                                  
+tit !qnt - SUM NOT MATCHING TO !ctr.                                                                                              
+temporary.                                                                                                                        
+sel if SumX !opr !ctr.                                                                                                            
+list record, !svar to !evar.                                                                                                      
+del var SumX.                                                                                                                     
+!EndDefine.                                                                                                                       
+                                                                                                                                  
+** input defined are as follows.                                                                                                  
+* svar= Starting variable .                                                                                                       
+* evar= Ending variable   .                                                                                                       
+* qnt= Question id        .                                                                                                       
+* ctr= It can be any VARIABLE NAME or 100 (any other numeric value) (based on what type of logic is getting check).               
+* opr= pass operator (=, ~=, <> , <, >, =>, <= ) which is based on what logic wants to check.                                     
+                                                                                                                                  
+                                                                                                                                  
+!Sum_to_var svar=A evar=D qnt=Q100 ctr=val opr= <>.                                                                               
+
+
+************ ONLY selected number of response allowed for MULTI RESPONSE Qs (ex. like only 3, atleast 3 selection allowed) * . 
+
+                                                                                                                               
+Define !multi_numb (svar !TOKENS (1) /evar !TOKENS (1) /qnt !TOKENS (1) /ctr !TOKENS (1) /opr !TOKENS (1))                     
+                                                                                                                               
+COUNT numb=!svar to !evar (1).                                                                                                 
+exe.                                                                                                                           
+                                                                                                                               
+tit !qnt - SLECTION NOT MATCHIN TO !ctr.                                                                                       
+temporary.                                                                                                                     
+sel if numb !opr !ctr.                                                                                                         
+list record, !svar to !evar.                                                                                                   
+del var numb.                                                                                                                  
+!EndDefine.                                                                                                                    
+                                                                                                                               
+** input defined are as follows.                                                                                               
+* svar= Starting variable .                                                                                                    
+* evar= Ending variable   .                                                                                                    
+* qnt= Question id        .                                                                                                    
+* ctr= It can be any VARIABLE NAME or 100 (any other numeric value) (based on what type of logic is getting check).            
+* opr= pass operator (=, ~=, <> , <, >, =>, <= ) which is based on what logic wants to check.                                  
+                                                                                                                               
+!multi_numb svar=e evar=g qnt=efg ctr=2 opr= <.                                                                                
+******************************************************************************************************************************.
+
+
+************ RANK CHECK * .                                                                                   
+
+Define !Rank_ALL_CHK (svar !TOKENS (1) /evar !TOKENS (1) /qnt !TOKENS (1) /rank !TOKENS (1) /opr !TOKENS (1)) 
+                                                                                                              
+                                                                                                              
+COMPUTE scoreval =nvalid(!svar to !evar).                                                                     
+exe.                                                                                                          
+                                                                                                              
+tit !qnt - RANK NOT MATCHING TO !rank.                                                                        
+temporary.                                                                                                    
+sel if scoreval !opr !rank.                                                                                   
+list record, !svar to !evar.                                                                                  
+                                                                                                              
+COMPUTE minrank =min(!svar to !evar).                                                                         
+exe.                                                                                                          
+                                                                                                              
+COMPUTE maxrank =max(!svar to !evar).                                                                         
+exe.                                                                                                          
+                                                                                                              
+tit !qnt - INVALID RANKS .                                                                                    
+temporary.                                                                                                    
+sel if (minrank !opr 1 OR maxrank !opr scoreval).                                                             
+list record, !svar to !evar.                                                                                  
+                                                                                                              
+                                                                                                              
+EXECUTE.                                                                                                      
+*Compute scoreval to determine the number of valid values in each row for comparison.                         
+COMPUTE k = 0.                                                                                                
+EXECUTE.                                                                                                      
+*create the output value of k all values =0.                                                                  
+VECTOR X = !svar to !evar.                                                                                    
+LOOP #i = 1 to scoreval.                                                                                      
++ LOOP #j = (#i+1) to scoreval.                                                                               
++ IF X(#i) = X(#j) k=1.                                                                                       
+END LOOP.                                                                                                     
+END LOOP.                                                                                                     
+EXECUTE .                                                                                                     
+                                                                                                              
+tit !qnt - RANK DUPLICATE.                                                                                    
+temporary.                                                                                                    
+sel if k=1.                                                                                                   
+list record, !svar to !evar.                                                                                  
+del var scoreval k minrank maxrank.                                                                           
+                                                                                                              
+!EndDefine.                                                                                                   
+                                                                                                              
+** input defined are as follows.                                                                              
+* svar= Starting variable .                                                                                   
+* evar= Ending variable   .                                                                                   
+* qnt= Question id        .                                                                                   
+* rank= It can be any numeric Rank.                                                                           
+* opr= pass operator (=, ~=, <> , <, >, =>, <= ) which is based on what logic wants to check.                 
+                                                                                                              
+!Rank_ALL_CHK svar=A evar=G qnt=ABCD rank=7  opr= ~=.                                     

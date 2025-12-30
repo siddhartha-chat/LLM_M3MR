@@ -1,0 +1,179 @@
+{
+  "comparison": "multi_batch_1.py vs multi_batch_2.py",
+  "summary": "multi_batch_2.py has 10 major additions/modifications beyond multi_batch_1.py",
+  "changes": [
+    {
+      "id": 1,
+      "type": "NEW_FUNCTION",
+      "location": "Line 167-172",
+      "description": "Added _trim_training_context() helper function",
+      "code": "def _trim_training_context(ctx: str, batch_id: int) -> str:\n    first = int(os.getenv(\"TRAINING_CONTEXT_FIRST_BATCH_CHARS\", \"80000\"))\n    other = int(os.getenv(\"TRAINING_CONTEXT_OTHER_BATCH_CHARS\", \"60000\"))\n    limit = first if batch_id == 1 else other\n    return ctx[:limit]",
+      "purpose": "Trims training context based on batch ID (first batch gets more chars)"
+    },
+    {
+      "id": 2,
+      "type": "MODIFICATION",
+      "location": "Line 279-296",
+      "description": "Simplified GlobalRateLimiter.__init__() and acquire()",
+      "changes": [
+        "Removed: time-based rate limiting logic",
+        "Removed: last_request_time tracking",
+        "Simplified: acquire() now just has semaphore + random jitter",
+        "Added: _cached_curated_context attribute",
+        "Added: CALL_TIMEOUT_SECONDS attribute"
+      ],
+      "purpose": "Simplify rate limiting to avoid complexity"
+    },
+    {
+      "id": 3,
+      "type": "MODIFICATION",
+      "location": "Line 362, 402-409, 765-811",
+      "description": "Added timeout to API calls",
+      "code": "response = await asyncio.wait_for(\n    self.client.chat.completions.create(**completion_args),\n    timeout=CALL_TIMEOUT_SECONDS\n)",
+      "purpose": "Prevent API calls from hanging indefinitely (75 second timeout)"
+    },
+    {
+      "id": 4,
+      "type": "MODIFICATION",
+      "location": "Line 427-456",
+      "description": "Added batch size splitting logic and env flags",
+      "changes": [
+        "Adds MAX_USER_CHARS env variable (90000 default)",
+        "Recursively splits batches if content > MAX_USER_CHARS",
+        "Adds ENABLE_COT and ENABLE_ANTI_PATTERNS environment flags",
+        "Calls _trim_training_context() before organizing",
+        "Reorganizes enhancement injection with conditional flags"
+      ],
+      "purpose": "Handle very large batches by splitting them"
+    },
+    {
+      "id": 5,
+      "type": "MODIFICATION",
+      "location": "Line 498-505",
+      "description": "Added dynamic max_tokens calculation",
+      "code": "def _cap_for_transformer(n):\n    # ~700–900 tokens per question + small overhead; cap at 8000\n    return min(8000, 900 * n + 1200)\n\nmax_tokens = _cap_for_transformer(len(questions))",
+      "purpose": "Adjust max_tokens based on number of questions instead of fixed limit"
+    },
+    {
+      "id": 6,
+      "type": "MODIFICATION",
+      "location": "Line 550-586",
+      "description": "Applied _trim_training_context in regenerate_subset_async",
+      "code": "training_context = _trim_training_context(training_context, batch_id)",
+      "purpose": "Trim context before regeneration to avoid overload"
+    },
+    {
+      "id": 7,
+      "type": "MODIFICATION",
+      "location": "Line 620-621 vs 656-662",
+      "description": "Changed _format_question() to prune and compact JSON",
+      "old": "return json.dumps(question, indent=2, ensure_ascii=False)",
+      "new": "KEYS = [\n    \"Question ID\",\"SelectType\",\"answers\",\"conditions\",\n    \"question_attributes\",\"sub_questions\",\"VariableType\",\"Disabled\",\"Question Label\"\n]\npruned = {k: question.get(k) for k in KEYS if k in question}\nreturn json.dumps(pruned, ensure_ascii=False, separators=(\",\",\":\"))",
+      "purpose": "Reduce token usage by only including essential fields and compact JSON"
+    },
+    {
+      "id": 8,
+      "type": "MODIFICATION",
+      "location": "Line 905-964",
+      "description": "Added batch splitting in review_batch_async",
+      "code": "REVIEW_MAX_USER_CHARS = int(os.getenv(\"REVIEW_MAX_USER_CHARS\", \"80000\"))\nif len(combined_questions) > REVIEW_MAX_USER_CHARS and len(valid_outputs) > 1:\n    # split qids in half and review twice\n    qids = list(valid_outputs.keys())\n    mid = len(qids) // 2\n    left = {k: valid_outputs[k] for k in qids[:mid]}\n    right = {k: valid_outputs[k] for k in qids[mid:]}\n    f_left = await self.review_batch_async(expected_logic, left, training_context, batch_id)\n    f_right = await self.review_batch_async(expected_logic, right, training_context, batch_id)\n    return f_left + f_right",
+      "purpose": "Handle very large review batches by splitting them"
+    },
+    {
+      "id": 9,
+      "type": "MODIFICATION",
+      "location": "Line 1097 and 1214-1278",
+      "description": "Added caching for curated training context",
+      "code": "self._cached_curated_context = None\n\nif self._cached_curated_context is None:\n    self._cached_curated_context = await self.reviewer.pre_analyze_questions_async(...)\ncurated_training_context = self._cached_curated_context",
+      "purpose": "Cache pre-analysis results so subsequent loops reuse the same curated context"
+    },
+    {
+      "id": 10,
+      "type": "MODIFICATION",
+      "location": "Line 1222-1301 and 1259-1351",
+      "description": "Added empty output handling in feedback loop",
+      "code": "if not outputs:\n    findings = [\n        {\"question_id\": q.get(\"Question ID\",\"UNKNOWN\"),\n        \"pass\": False,\n        \"root_causes\": [\"Model returned empty output\"],\n        \"instructions\": [\"Retry with reduced context or smaller batch size\"]}\n        for q in remaining_questions\n    ]\n    self._log_batch_findings(gen_file, findings, batch_idx, loop)\n    remaining_ids = {f[\"question_id\"] for f in findings}\n    remaining_questions = [q for q in remaining_questions if q.get(\"Question ID\") in remaining_ids]\n    continue",
+      "purpose": "Handle cases where LLM returns empty output by creating synthetic findings and continuing loop"
+    }
+  ],
+  "environment_variables_added": [
+    {
+      "name": "CALL_TIMEOUT_SECONDS",
+      "default": "75",
+      "purpose": "Timeout for API calls in seconds"
+    },
+    {
+      "name": "MAX_USER_CHARS",
+      "default": "90000",
+      "purpose": "Maximum characters for user prompt before splitting batch"
+    },
+    {
+      "name": "REVIEW_MAX_USER_CHARS",
+      "default": "80000",
+      "purpose": "Maximum characters for review prompt before splitting batch"
+    },
+    {
+      "name": "ENABLE_COT",
+      "default": "false",
+      "purpose": "Enable Chain-of-Thought reasoning (true/false)"
+    },
+    {
+      "name": "ENABLE_ANTI_PATTERNS",
+      "default": "true",
+      "purpose": "Enable anti-patterns injection (true/false)"
+    }
+  ],
+  "impact_analysis": {
+    "performance": {
+      "improvements": [
+        "Timeout prevents indefinite hangs",
+        "Compact JSON reduces token usage",
+        "Batch splitting handles large inputs better",
+        "Context caching reduces duplicate pre-analysis calls"
+      ],
+      "tradeoffs": [
+        "More complex code with splitting logic",
+        "Caching might reuse stale context",
+        "Dynamic max_tokens might cause unexpected failures"
+      ]
+    },
+    "reliability": {
+      "improvements": [
+        "Timeout handling prevents stuck processes",
+        "Empty output handling prevents loops from breaking"
+      ],
+      "concerns": [
+        "Caching might cause issues if context becomes stale",
+        "Batch splitting adds recursion complexity"
+      ]
+    },
+    "maintainability": {
+      "improvements": [
+        "Environment flags make features toggleable",
+        "Modular trimming function"
+      ],
+      "concerns": [
+        "More code paths to maintain",
+        "Repeated splitting logic in multiple places"
+      ]
+    }
+  },
+  "recommended_rollbacks": {
+    "if_too_aggressive": [
+      "Remove dynamic max_tokens (revert to fixed limit)",
+      "Remove batch splitting in generate_batch_async (too recursive)",
+      "Remove training context trimming (may reduce quality)"
+    ],
+    "if_too_complex": [
+      "Remove caching logic (simpler flow)",
+      "Use fixed delay instead of time-based rate limiting",
+      "Remove ENABLE_COT and ENABLE_ANTI_PATTERNS flags"
+    ],
+    "if_quality_degraded": [
+      "Revert _format_question() to verbose JSON with indentation",
+      "Remove context trimming to preserve full examples",
+      "Keep full training context without progressive reduction"
+    ]
+  }
+}
+

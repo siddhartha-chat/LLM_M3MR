@@ -1,0 +1,19 @@
+{"question_id": "S8", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S8", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S8", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S8", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9DE", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9FR", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9IT", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9UK", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9ES", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S8", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S8", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S4", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS4DE", "pass": false, "root_causes": ["Validation as written will flag missing values even though the question is NotRequired. The sel if uses ~any(HidS4DE,1,2) which is true for missing values.", "Script assumes test mode is indicated by qTesting = 1 (isTest() was the expected condition). If the actual test indicator variable or value differs, the condition will be incorrect."], "instructions": ["Exclude missing values when validating a NotRequired question. Change the selection to require non-missing responses, e.g.: sel if qCountry = 7 & qTesting = 1 & ~miss(HidS4DE) & ~any(HidS4DE,1,2).", "If your environment uses a different test-mode indicator than qTesting = 1, replace qTesting = 1 with the correct isTest() check or the appropriate variable/value (for example, use isTest() or qTesting <> 1 as applicable)."]}
+{"question_id": "S4a0", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S4a", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S4", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "HidS4DE", "pass": false, "root_causes": ["Mapping from S4 to HidS4DE_chk is incomplete: the script only treats S4=21 as 'Hospital' and treats all other S4 values as 'Office/mix', but S4 contains many other codes that represent hospital or hospital-type settings."], "instructions": ["Update the HidS4DE_chk assignment so it sets HidS4DE_chk = 1 for all S4 codes that represent hospital settings (not just 21). For example replace the current line 'if any(S4,21) HidS4DE_chk = 1.' with a line that checks all hospital-related S4 codes, e.g.:", "if any(S4,3,4,21,31,32,33,34,41,42,43,44,45,51,52,53,65,66,67,68,69,70,71) HidS4DE_chk = 1.", "Verify the selected S4 codes in the any(...) list exactly match the project's intended hospital-type codes and adjust the list if other codes should be considered hospital (or conversely removed if they should not).", "Confirm that using qTesting = 1 correctly represents isTest() in your environment; if not, replace '(qCountry = 7 AND qTesting = 1)' with the proper test-mode check (e.g., isTest())."]}
+{"question_id": "S4a0", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "S4a", "pass": true, "root_causes": [], "instructions": []}

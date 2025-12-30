@@ -1,0 +1,27 @@
+{"question_id": "A1x1", "pass": false, "root_causes": ["Column mask (flt_A1x1) uses S7_1 > 0 but does not exclude special codes 97, 98, 99 — special-code values in S7_1 will incorrectly trigger all column checks.", "Sum comparison compares sumA1x1 to S7_1 even when S7_1 is a special code (97/98/99), which can produce false flags.", "t_ variables keep system-missing for original-missing cells (compute tx = x; only special codes set to 0). SUM(t_...) will ignore system-missings which may lead to unintended missing sum results; missing numeric cells may need to be treated as 0 for the intended numeric-sum comparison."], "instructions": ["Restrict the column mask to exclude S7_1 special codes. Change the flt_A1x1 computation to: compute flt_A1x1 = 0. if (NOT(MISSING(S7_1)) AND S7_1 > 0 AND NOT(S7_1 IN (97,98,99))) flt_A1x1 = 1.", "Only perform the sum comparison when S7_1 is not a special code. Modify the select for sum mismatch to include NOT(S7_1 IN (97,98,99)), e.g.: temporary. sel if flt_A1x1 = 1 AND NOT(MISSING(S7_1)) AND NOT(S7_1 IN (97,98,99)) AND (sumA1x1 <> S7_1).", "Ensure t_ helper variables treat system-missing original cells as zero before computing the sum. Inside the DO REPEAT after handling special codes add: if (MISSING(tx)) tx = 0. This guarantees SUM(t_...) behaves as intended (missing -> 0)."]}
+{"question_id": "S9US", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9AU", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQs", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQsCnts", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9US", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9AU", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQs", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQsCnts", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9US", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S9AU", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQs", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidScrQsCnts", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "A1x2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6a", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS7Vals", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "S6a", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "HidS7Vals", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}

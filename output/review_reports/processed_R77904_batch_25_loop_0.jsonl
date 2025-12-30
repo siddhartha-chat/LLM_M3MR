@@ -1,0 +1,32 @@
+{"question_id": "B5dDKx5", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex3", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex4", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex5", "pass": false, "root_causes": ["DK checkbox variable name mismatch: expected validation references B5eDKx5 but the script uses B5dDKx5_5"], "instructions": ["Update the DK mutual-exclusion/presence checks to reference the DK variable named in the expected logic (B5eDKx5) instead of B5dDKx5_5, or confirm which DK variable is canonical and make the expected logic and all scripts consistent.", "Ensure the DK checked value comparison uses the correct checked code (script currently uses = 1; verify that matches the DK variable coding)."]}
+{"question_id": "B5dDKx5", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex3", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex4", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5ex5", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B5dDKx5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5dDKx5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex4", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B5ex5", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4bc", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4bc", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4dx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}

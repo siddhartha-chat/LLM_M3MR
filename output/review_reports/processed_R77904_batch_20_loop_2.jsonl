@@ -1,0 +1,10 @@
+{"question_id": "B4lDKx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4lDKx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4m", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4nx1", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4nx2", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B4nx3", "pass": false, "root_causes": ["Model returned empty output"], "instructions": ["Retry with reduced context or smaller batch size"]}
+{"question_id": "B2cDKx1", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B2cDKx2", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B2cDKx3", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "B2cDKx4", "pass": true, "root_causes": [], "instructions": []}

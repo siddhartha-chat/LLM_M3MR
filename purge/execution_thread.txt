@@ -1,0 +1,966 @@
+* Determine whether column 3 was shown (MaskSec2Cols() -> S7_3 > 0).<br>
+compute prod3_shown = 0.<br>
+if (not(miss(S7_3)) and S7_3 > 0) prod3_shown = 1.<br>
+* 1) If column was shown, ...
+
+    [DEBUG FLOW] [Batch 19] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B4dDKx3', 'B4dDKx4', 'B4dDKx5', 'B4f', 'B4g', 'B4i']
+    - B4dDKx3: script length = 690 chars
+    - B4dDKx4: script length = 624 chars
+    - B4dDKx5: script length = 624 chars
+    - B4f: script length = 435 chars
+    - B4g: script length = 1035 chars
+    - B4i: script length = 431 chars
+
+🔍 [Batch 19] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 19] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ [Batch 18] API call completed in 253.1s. Response length: 0 chars
+  ⚠️  [Batch 18] WARNING: Model returned empty output!
+  [Batch 18] This might indicate context overflow or model error
+  📊 [Batch 18] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 18] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 18] Prompt size: system=503 chars, user=129208 chars
+  📏 [Batch 18] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 18] Total input: ~32427 tokens, max output: 8000 tokens
+  ⏳ [Batch 18] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 20] API call completed in 252.3s. Response length: 0 chars
+  ⚠️  [Batch 20] WARNING: Model returned empty output!
+  [Batch 20] This might indicate context overflow or model error
+  📊 [Batch 20] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 20] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 20] Prompt size: system=503 chars, user=120931 chars
+  📏 [Batch 20] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 20] Total input: ~30358 tokens, max output: 8000 tokens
+  ⏳ [Batch 20] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 17] API call completed in 300.8s. Response length: 0 chars
+  ⚠️  [Batch 17] WARNING: Model returned empty output!
+  [Batch 17] This might indicate context overflow or model error
+  📊 [Batch 17] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 17] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 17] Prompt size: system=503 chars, user=123905 chars
+  📏 [Batch 17] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 17] Total input: ~31102 tokens, max output: 8000 tokens
+  ⏳ [Batch 17] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 15] API call completed in 229.0s. Response length: 11217 chars
+  📊 [Batch 15] Parsed 6 script(s) from model output
+  ✓ [Batch 15] Extracted scripts for QIDs: ['B2cDKx5', 'B3bb', 'B3bc', 'B3cx1', 'B3cx2', 'B3cx3']
+  📝 [Batch 15] First script preview (B2cDKx5, 193 chars):
+     tit B2cDKx5.<br>
+temporary.<br>
+* Flag unexpected codes when a value is present (allow missing or code 99).<br>
+sel if ~miss(B2cDKx5_99) and ~any(B2cDKx5_99,99).<br>
+list respid B2cDKx5_99.<br>...
+
+    [DEBUG FLOW] [Batch 15] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B2cDKx5', 'B3bb', 'B3bc', 'B3cx1', 'B3cx2', 'B3cx3']
+    - B2cDKx5: script length = 193 chars
+    - B3bb: script length = 237 chars
+    - B3bc: script length = 288 chars
+    - B3cx1: script length = 1003 chars
+    - B3cx2: script length = 817 chars
+    - B3cx3: script length = 893 chars
+
+🔍 [Batch 15] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 15] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ [Batch 12] API call completed in 242.7s. Response length: 0 chars
+  ⚠️  [Batch 12] WARNING: Model returned empty output!
+  [Batch 12] This might indicate context overflow or model error
+  📊 [Batch 12] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 12] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 12] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 12] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 13] API call completed in 270.0s. Response length: 0 chars
+  ⚠️  [Batch 13] WARNING: Model returned empty output!
+  [Batch 13] This might indicate context overflow or model error
+  📊 [Batch 13] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 13] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 13] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 13] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 11] API call completed in 265.7s. Response length: 0 chars
+  ⚠️  [Batch 11] WARNING: Model returned empty output!
+  [Batch 11] This might indicate context overflow or model error
+  📊 [Batch 11] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 11] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 11] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 11] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 19] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 6 questions: ['B4dDKx3', 'B4dDKx4', 'B4dDKx5', 'B4f', 'B4g', 'B4i']
+    - Failed: 0 questions: []
+    ✅ All 6 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 14] API call completed in 273.9s. Response length: 0 chars
+  ⚠️  [Batch 14] WARNING: Model returned empty output!
+  [Batch 14] This might indicate context overflow or model error
+  📊 [Batch 14] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 14] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 14] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 14] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 15] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 3 questions: ['B2cDKx5', 'B3bb', 'B3bc']
+    - Failed: 3 questions: ['B3cx1', 'B3cx2', 'B3cx3']
+
+  🔄 Async Loop 2/5 (Batch 15)
+    [DEBUG] AsyncReviewer->AsyncTransformer feedback (first send, batch 15)
+    Count: 3 | QIDs: ['B3cx1', 'B3cx2', 'B3cx3']
+    Payload preview (first 2000 chars): [{"question_id": "B3cx1", "pass": false, "root_causes": ["Missing DK-handling: the expected validation calls CheckDK3D('B3cx1','B3cDKx1') and only runs the autosum/validateB1c when no DK checkbox is selected (f('B3cDKx1').size() == 0). The generated script does not call CheckDK3D nor skip the autosum when the DK mechanism is present."], "instructions": ["Add the DK check: call CheckDK3D('B3cx1','B3cDKx1') before running autosum validation.", "Only perform the autosum/consistency check (validate sum against S7_1) when the DK checkbox variable indicates no DK selection (i.e. equivalent to f('B3cDKx1').size() == 0).", "Implement the condition so that if the DK variable indicates DK was selected the autosum validation is skipped; otherwise continue with the current SUM/S7_1 comparison, execute, and then delete the temporary sum variable."]}, {"question_id": "B3cx2", "pass": false, "root_causes": ["Missing DK-handling: expected CheckDK3D('B3cx2','B3cDKx2') and to skip autosum/validation when DK is selected. The generated script does not perform this DK check or skip validation in presence of DK."], "instructions": ["Add the DK check: call CheckDK3D('B3cx2','B3cDKx2') before running autosum validation.", "Only perform the autosum/consistency check against S7_2 when no DK is indicated for B3cx2 (i.e. f('B3cDKx2').size() == 0).", "Ensure compute/execute and deletion of the temporary sum variable are included (compute SUM..., execute, then delete variables <sumvar>)."]}, {"question_id": "B3cx3", "pass": false, "root_causes": ["Missing DK-handling: expected CheckDK3D('B3cx3','B3cDKx3') and skipping autosum when DK selected; the script omits this.", "Autosum/consistency block placement issues: the autosum/validation code appears embedded inside the DO REPEAT (no explicit END REPEAT present) rather than being run once after per-cell checks.", "Temporary sum variable is not deleted and compute/execute sequencing is inconsistent (execute is missing).", "The literal ValidationCode
+
+🔄 [Batch 15] AsyncTransformerAgent: Regenerating 3 failed question(s)...
+  📏 [Batch 15] Regeneration prompt: system=503 chars, user=125701 chars
+  📏 [Batch 15] Training context size: 13549 chars (~3387 tokens)
+  📏 [Batch 15] Total input: ~31551 tokens, max output: 8000 tokens
+  ⏳ [Batch 15] Calling OpenAI API for regeneration...
+  ✅ [Batch 16] API call completed in 284.9s. Response length: 0 chars
+  ⚠️  [Batch 16] WARNING: Model returned empty output!
+  [Batch 16] This might indicate context overflow or model error
+  📊 [Batch 16] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 16] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 16] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 16] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 18] API call completed in 275.0s. Response length: 0 chars
+  ⚠️  [Batch 18] WARNING: Model returned empty output!
+  [Batch 18] This might indicate context overflow or model error
+  📊 [Batch 18] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 18] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 18] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 18] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 20] API call completed in 253.0s. Response length: 0 chars
+  ⚠️  [Batch 20] WARNING: Model returned empty output!
+  [Batch 20] This might indicate context overflow or model error
+  📊 [Batch 20] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 20] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 20] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 20] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 17] API call completed in 220.6s. Response length: 0 chars
+  ⚠️  [Batch 17] WARNING: Model returned empty output!
+  [Batch 17] This might indicate context overflow or model error
+  📊 [Batch 17] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 17] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 17] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 17] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 15] Regeneration API call completed in 89.8s. Response length: 6123 chars
+  📊 [Batch 15] Parsed 3 script(s) from regeneration output
+  ✓ [Batch 15] Regenerated scripts for QIDs: ['B3cx1', 'B3cx2', 'B3cx3']
+
+    [DEBUG FLOW] [Batch 15] About to send to reviewer:
+    - Outputs dict has 3 entries
+    - QIDs in outputs: ['B3cx1', 'B3cx2', 'B3cx3']
+    - B3cx1: script length = 1831 chars
+    - B3cx2: script length = 1468 chars
+    - B3cx3: script length = 1617 chars
+
+🔍 [Batch 15] AsyncReviewerAgent: Reviewing 3 generated script(s) in ONE API call...
+  📏 [Batch 15] Reviewing 3 questions in 1 API call (vs 3 calls previously)
+  ✅ Parsed 3 findings from batch review
+
+    [DEBUG FLOW] [Batch 15] Reviewer returned:
+    - Findings list has 3 entries
+    - Passed: 3 questions: ['B3cx1', 'B3cx2', 'B3cx3']
+    - Failed: 0 questions: []
+    ✅ All 3 questions passed!
+    💾 Learning memory saved to learning_memory.json
+✅ Batch 11/28 completed: 0 passed
+✅ Batch 12/28 completed: 0 passed
+✅ Batch 13/28 completed: 0 passed
+✅ Batch 14/28 completed: 0 passed
+✅ Batch 15/28 completed: 6 passed
+✅ Batch 16/28 completed: 0 passed
+✅ Batch 17/28 completed: 0 passed
+✅ Batch 18/28 completed: 0 passed
+✅ Batch 19/28 completed: 6 passed
+✅ Batch 20/28 completed: 0 passed
+✅ Chunk 2/3 complete (10 batches processed)
+
+⚡ Launching chunk 3/3: batches 21-28 (8 batches in parallel)...
+
+  🔄 Async Loop 1/5 (Batch 21)
+
+🔍 [Batch 21] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 21] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 22)
+
+🔍 [Batch 22] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 22] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 23)
+
+🔍 [Batch 23] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 23] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 24)
+
+🔍 [Batch 24] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 24] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 25)
+
+🔍 [Batch 25] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 25] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 26)
+
+🔍 [Batch 26] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 26] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 27)
+
+🔍 [Batch 27] AsyncReviewerAgent: Pre-analyzing 6 question(s) to curate training examples...
+  ⏰ [Batch 27] NOTE: This pre-analysis step may take 30-60 seconds...
+
+  🔄 Async Loop 1/5 (Batch 28)
+
+🔍 [Batch 28] AsyncReviewerAgent: Pre-analyzing 2 question(s) to curate training examples...
+  ⏰ [Batch 28] NOTE: This pre-analysis step may take 30-60 seconds...
+  📏 [Batch 21] Pre-analysis input: ~101246 tokens, output limit: 10000
+  ⏳ [Batch 21] Calling OpenAI API for pre-analysis...
+  📏 [Batch 22] Pre-analysis input: ~102248 tokens, output limit: 10000
+  ⏳ [Batch 22] Calling OpenAI API for pre-analysis...
+  📏 [Batch 23] Pre-analysis input: ~103379 tokens, output limit: 10000
+  ⏳ [Batch 23] Calling OpenAI API for pre-analysis...
+  📏 [Batch 24] Pre-analysis input: ~100323 tokens, output limit: 10000
+  ⏳ [Batch 24] Calling OpenAI API for pre-analysis...
+  📏 [Batch 25] Pre-analysis input: ~100047 tokens, output limit: 10000
+  ⏳ [Batch 25] Calling OpenAI API for pre-analysis...
+  📏 [Batch 26] Pre-analysis input: ~100883 tokens, output limit: 10000
+  ⏳ [Batch 26] Calling OpenAI API for pre-analysis...
+  📏 [Batch 27] Pre-analysis input: ~99570 tokens, output limit: 10000
+  ⏳ [Batch 27] Calling OpenAI API for pre-analysis...
+  📏 [Batch 28] Pre-analysis input: ~99047 tokens, output limit: 10000
+  ⏳ [Batch 28] Calling OpenAI API for pre-analysis...
+  ✅ [Batch 23] Pre-analysis completed in 94.3s
+  ✓ [Batch 23] Curated training context: 11511 characters (~2877 tokens)
+
+🔄 [Batch 23] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 23] Prompt size: system=503 chars, user=136173 chars
+  📏 [Batch 23] Training context size: 11511 chars (~2877 tokens)
+  📏 [Batch 23] Total input: ~34169 tokens, max output: 8000 tokens
+  ⏳ [Batch 23] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 25] Pre-analysis completed in 95.0s
+  ✓ [Batch 25] Curated training context: 12878 characters (~3219 tokens)
+
+🔄 [Batch 25] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 25] Prompt size: system=503 chars, user=124206 chars
+  📏 [Batch 25] Training context size: 12878 chars (~3219 tokens)
+  📏 [Batch 25] Total input: ~31177 tokens, max output: 8000 tokens
+  ⏳ [Batch 25] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 22] Pre-analysis completed in 102.1s
+  ✓ [Batch 22] Curated training context: 15647 characters (~3911 tokens)
+
+🔄 [Batch 22] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 22] Prompt size: system=503 chars, user=135783 chars
+  📏 [Batch 22] Training context size: 15647 chars (~3911 tokens)
+  📏 [Batch 22] Total input: ~34071 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 24] Pre-analysis completed in 118.5s
+  ✓ [Batch 24] Curated training context: 15882 characters (~3970 tokens)
+
+🔄 [Batch 24] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 24] Prompt size: system=503 chars, user=128316 chars
+  📏 [Batch 24] Training context size: 15882 chars (~3970 tokens)
+  📏 [Batch 24] Total input: ~32204 tokens, max output: 8000 tokens
+  ⏳ [Batch 24] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 21] Pre-analysis completed in 133.0s
+  ✓ [Batch 21] Curated training context: 16221 characters (~4055 tokens)
+
+🔄 [Batch 21] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 21] Prompt size: system=503 chars, user=132350 chars
+  📏 [Batch 21] Training context size: 16221 chars (~4055 tokens)
+  📏 [Batch 21] Total input: ~33213 tokens, max output: 8000 tokens
+  ⏳ [Batch 21] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 28] Pre-analysis completed in 167.7s
+  ✓ [Batch 28] Curated training context: 11295 characters (~2823 tokens)
+
+🔄 [Batch 28] AsyncTransformerAgent: Generating scripts for 2 question(s)...
+  📏 [Batch 28] Prompt size: system=503 chars, user=115123 chars
+  📏 [Batch 28] Training context size: 11295 chars (~2823 tokens)
+  📏 [Batch 28] Total input: ~28906 tokens, max output: 8000 tokens
+  ⏳ [Batch 28] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 27] Pre-analysis completed in 183.0s
+  ✓ [Batch 27] Curated training context: 13577 characters (~3394 tokens)
+
+🔄 [Batch 27] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 27] Prompt size: system=503 chars, user=122983 chars
+  📏 [Batch 27] Training context size: 13577 chars (~3394 tokens)
+  📏 [Batch 27] Total input: ~30871 tokens, max output: 8000 tokens
+  ⏳ [Batch 27] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 26] Pre-analysis completed in 205.5s
+  ✓ [Batch 26] Curated training context: 16312 characters (~4078 tokens)
+
+🔄 [Batch 26] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 26] Prompt size: system=503 chars, user=130990 chars
+  📏 [Batch 26] Training context size: 16312 chars (~4078 tokens)
+  📏 [Batch 26] Total input: ~32873 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 23] API call completed in 145.3s. Response length: 0 chars
+  ⚠️  [Batch 23] WARNING: Model returned empty output!
+  [Batch 23] This might indicate context overflow or model error
+  📊 [Batch 23] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 23] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 23] Prompt size: system=503 chars, user=126662 chars
+  📏 [Batch 23] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 23] Total input: ~31791 tokens, max output: 8000 tokens
+  ⏳ [Batch 23] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 28] API call completed in 109.7s. Response length: 2181 chars
+  📊 [Batch 28] Parsed 2 script(s) from model output
+  ✓ [Batch 28] Extracted scripts for QIDs: ['qList', 'hidTier']
+  📝 [Batch 28] First script preview (qList, 475 chars):
+     tit qList.<br>compute qList_chk = 2.  /* default: Off-List */<br>/* Expected mapping: set to 1 (List) when known panel/sample flags indicate list membership. Replace source variables below with projec...
+
+    [DEBUG FLOW] [Batch 28] About to send to reviewer:
+    - Outputs dict has 2 entries
+    - QIDs in outputs: ['qList', 'hidTier']
+    - qList: script length = 475 chars
+    - hidTier: script length = 552 chars
+
+🔍 [Batch 28] AsyncReviewerAgent: Reviewing 2 generated script(s) in ONE API call...
+  📏 [Batch 28] Reviewing 2 questions in 1 API call (vs 2 calls previously)
+  ✅ [Batch 22] API call completed in 200.6s. Response length: 0 chars
+  ⚠️  [Batch 22] WARNING: Model returned empty output!
+  [Batch 22] This might indicate context overflow or model error
+  📊 [Batch 22] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 22] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 22] Prompt size: system=503 chars, user=122094 chars
+  📏 [Batch 22] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 22] Total input: ~30649 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 24] API call completed in 208.2s. Response length: 0 chars
+  ⚠️  [Batch 24] WARNING: Model returned empty output!
+  [Batch 24] This might indicate context overflow or model error
+  📊 [Batch 24] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 24] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 24] Prompt size: system=503 chars, user=114434 chars
+  📏 [Batch 24] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 24] Total input: ~28734 tokens, max output: 8000 tokens
+  ⏳ [Batch 24] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 25] API call completed in 234.5s. Response length: 10702 chars
+  📊 [Batch 25] Parsed 6 script(s) from model output
+  ✓ [Batch 25] Extracted scripts for QIDs: ['B5dx4', 'B5dx5', 'B5dDKx1', 'B5dDKx2', 'B5dDKx3', 'B5dDKx4']
+  📝 [Batch 25] First script preview (B5dx4, 1791 chars):
+     tit B5dx4.<br>
+* Column visible when S7_4 > 0 (replicates MaskSec2Cols().isect(set("4")).size() > 0).<br>
+compute col4_vis = (S7_4 > 0).<br>
+exe.<br>
+<br>
+* Per-cell DK-driven requirement/forbid check...
+
+    [DEBUG FLOW] [Batch 25] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B5dx4', 'B5dx5', 'B5dDKx1', 'B5dDKx2', 'B5dDKx3', 'B5dDKx4']
+    - B5dx4: script length = 1791 chars
+    - B5dx5: script length = 1791 chars
+    - B5dDKx1: script length = 421 chars
+    - B5dDKx2: script length = 342 chars
+    - B5dDKx3: script length = 342 chars
+    - B5dDKx4: script length = 284 chars
+
+🔍 [Batch 25] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 25] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ [Batch 21] API call completed in 212.4s. Response length: 0 chars
+  ⚠️  [Batch 21] WARNING: Model returned empty output!
+  [Batch 21] This might indicate context overflow or model error
+  📊 [Batch 21] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 21] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 21] Prompt size: system=503 chars, user=118087 chars
+  📏 [Batch 21] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 21] Total input: ~29647 tokens, max output: 8000 tokens
+  ⏳ [Batch 21] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ Parsed 2 findings from batch review
+
+    [DEBUG FLOW] [Batch 28] Reviewer returned:
+    - Findings list has 2 entries
+    - Passed: 1 questions: ['hidTier']
+    - Failed: 1 questions: ['qList']
+
+  🔄 Async Loop 2/5 (Batch 28)
+    [DEBUG] AsyncReviewer->AsyncTransformer feedback (first send, batch 28)
+    Count: 1 | QIDs: ['qList']
+    Payload preview (first 2000 chars): [{"question_id": "qList", "pass": false, "root_causes": ["Missing entry condition IsInProductionMode() from expected logic — the script does not restrict checks to production mode.", "Script uses example source variables (hPanelFlag, hSampleType) without verifying they match project-specific sources (potential mismatch risk)."], "instructions": ["Enforce the expected entry condition by adding IsInProductionMode() to the selection filter. For example: temporary. sel if IsInProductionMode() and (miss(qList) or ~range(qList,1,2) or (qList_chk <> qList)).", "If you prefer to scope the compute to production only, wrap the compute/exe in a conditional (or use a sel if IsInProductionMode() before compute) so qList_chk is only derived in production.", "Verify and, if necessary, replace the example source variables hPanelFlag and hSampleType with the actual project-specific variables that indicate panel/sample membership (update the if statements accordingly)."]}]
+
+🔄 [Batch 28] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📏 [Batch 28] Regeneration prompt: system=503 chars, user=109920 chars
+  📏 [Batch 28] Training context size: 11295 chars (~2823 tokens)
+  📏 [Batch 28] Total input: ~27605 tokens, max output: 8000 tokens
+  ⏳ [Batch 28] Calling OpenAI API for regeneration...
+  ✅ [Batch 27] API call completed in 172.9s. Response length: 8819 chars
+  📊 [Batch 27] Parsed 6 script(s) from model output
+  ✓ [Batch 27] Extracted scripts for QIDs: ['B5eDKx1', 'B5eDKx2', 'B5eDKx3', 'B5eDKx4', 'B5eDKx5', 'surveyLOI']
+  📝 [Batch 27] First script preview (B5eDKx1, 1098 chars):
+     tit B5eDKx1.<br>
+* Validate binary DK flag and column-mask consistency for column 1.<br>
+temporary.<br>
+sel if miss(B5eDKx1_5) or ~range(B5eDKx1_5,0,1).<br>
+list respid, B5eDKx1_5.<br>
+<br>
+* Recreate...
+
+    [DEBUG FLOW] [Batch 27] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B5eDKx1', 'B5eDKx2', 'B5eDKx3', 'B5eDKx4', 'B5eDKx5', 'surveyLOI']
+    - B5eDKx1: script length = 1098 chars
+    - B5eDKx2: script length = 964 chars
+    - B5eDKx3: script length = 989 chars
+    - B5eDKx4: script length = 944 chars
+    - B5eDKx5: script length = 1036 chars
+    - surveyLOI: script length = 398 chars
+
+🔍 [Batch 27] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 27] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 25] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 6 questions: ['B5dx4', 'B5dx5', 'B5dDKx1', 'B5dDKx2', 'B5dDKx3', 'B5dDKx4']
+    - Failed: 0 questions: []
+    ✅ All 6 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 26] API call completed in 226.5s. Response length: 0 chars
+  ⚠️  [Batch 26] WARNING: Model returned empty output!
+  [Batch 26] This might indicate context overflow or model error
+  📊 [Batch 26] Parsed 0 script(s) from model output
+    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...
+
+🔄 [Batch 26] AsyncTransformerAgent: Generating scripts for 6 question(s)...
+  📏 [Batch 26] Prompt size: system=503 chars, user=117158 chars
+  📏 [Batch 26] Training context size: 2000 chars (~500 tokens)
+  📏 [Batch 26] Total input: ~29415 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API (model: gpt-5-mini)...
+  ✅ [Batch 22] API call completed in 167.3s. Response length: 8000 chars
+  📊 [Batch 22] Parsed 6 script(s) from model output
+  ✓ [Batch 22] Extracted scripts for QIDs: ['B4nDKx1', 'B4nDKx2', 'B4nDKx3', 'B5ba', 'B5bb', 'B5cx1']
+  📝 [Batch 22] First script preview (B4nDKx1, 109 chars):
+     tit B4nDKx1.<br>
+temporary.<br>
+sel if miss(B4nDKx1_5) or ~any(B4nDKx1_5,0,1).<br>
+list respid B4nDKx1_5.<br>...
+
+    [DEBUG FLOW] [Batch 22] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B4nDKx1', 'B4nDKx2', 'B4nDKx3', 'B5ba', 'B5bb', 'B5cx1']
+    - B4nDKx1: script length = 109 chars
+    - B4nDKx2: script length = 109 chars
+    - B4nDKx3: script length = 109 chars
+    - B5ba: script length = 152 chars
+    - B5bb: script length = 179 chars
+    - B5cx1: script length = 802 chars
+
+🔍 [Batch 22] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 22] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ [Batch 28] Regeneration API call completed in 135.3s. Response length: 1601 chars
+  📊 [Batch 28] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 28] Regenerated scripts for QIDs: ['qList']
+
+    [DEBUG FLOW] [Batch 28] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['qList']
+    - qList: script length = 1400 chars
+
+🔍 [Batch 28] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 28] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ [Batch 24] API call completed in 160.9s. Response length: 0 chars
+  ⚠️  [Batch 24] WARNING: Model returned empty output!
+  [Batch 24] This might indicate context overflow or model error
+  📊 [Batch 24] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 24] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 24] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 24] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 23] API call completed in 249.1s. Response length: 0 chars
+  ⚠️  [Batch 23] WARNING: Model returned empty output!
+  [Batch 23] This might indicate context overflow or model error
+  📊 [Batch 23] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 23] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 23] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 23] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 27] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 6 questions: ['B5eDKx1', 'B5eDKx2', 'B5eDKx3', 'B5eDKx4', 'B5eDKx5', 'surveyLOI']
+    - Failed: 0 questions: []
+    ✅ All 6 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 28] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['qList']
+
+  🔄 Async Loop 3/5 (Batch 28)
+
+🔄 [Batch 28] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 28] Loop 2: Reduced context to 5000 chars (from 11295)
+  📏 [Batch 28] Regeneration prompt: system=503 chars, user=104310 chars
+  📏 [Batch 28] Training context size: 11295 chars (~2823 tokens)
+  📏 [Batch 28] Total input: ~26203 tokens, max output: 8000 tokens
+  ⏳ [Batch 28] Calling OpenAI API for regeneration...
+  ✅ [Batch 21] API call completed in 203.2s. Response length: 0 chars
+  ⚠️  [Batch 21] WARNING: Model returned empty output!
+  [Batch 21] This might indicate context overflow or model error
+  📊 [Batch 21] Parsed 0 script(s) from model output
+
+    [DEBUG FLOW] [Batch 21] About to send to reviewer:
+    - Outputs dict has 0 entries
+    - ⚠️  WARNING: outputs dict is EMPTY! Reviewer will receive nothing.
+
+🔍 [Batch 21] AsyncReviewerAgent: Reviewing 0 generated script(s) in ONE API call...
+
+    [DEBUG FLOW] [Batch 21] Reviewer returned:
+    - Findings list has 0 entries
+    - ⚠️  WARNING: findings list is EMPTY!
+    ✅ All 0 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 22] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 5 questions: ['B4nDKx1', 'B4nDKx2', 'B4nDKx3', 'B5ba', 'B5bb']
+    - Failed: 1 questions: ['B5cx1']
+
+  🔄 Async Loop 2/5 (Batch 22)
+    [DEBUG] AsyncReviewer->AsyncTransformer feedback (first send, batch 22)
+    Count: 1 | QIDs: ['B5cx1']
+    Payload preview (first 2000 chars): [{"question_id": "B5cx1", "pass": false, "root_causes": ["The expected validation routine CheckDK3D('B5cx1','B5cDKx1') is not invoked in executable SPSS code; it appears only as a string literal.", "The expected conditional call to validateB1c(\"S7_1\",\"B5cx1\") guarded by !QuestionErrors() and f('B5cDKx1').size()==0 is not implemented. Instead the script performs a direct SUM comparison without checking QuestionErrors or running CheckDK3D.", "The ValidationCode was not translated into SPSS function/macro calls; required DK handling and the proper validation sequence are missing."], "instructions": ["Execute the CheckDK3D validation in SPSS before performing the sum check. For example, call the appropriate macro/function that implements CheckDK3D('B5cx1','B5cDKx1') so B5cDKx1 is populated/checked.", "Only run the validateB1c logic when there are no question-level errors. Replicate the expected conditional: if not QuestionErrors() AND f('B5cDKx1').size() == 0 then call the validateB1c routine (or perform the sum check). In SPSS this means ensure a QuestionErrors flag is checked (or equivalent) before comparing sum_B5cx1 to S7_1.", "Replace the ad-hoc selection sel if (miss(B5cDKx1) or B5cDKx1 = 0) and (sum_B5cx1 <> S7_1) with a two-step flow: (1) run CheckDK3D to set B5cDKx1 status; (2) if no QuestionErrors and B5cDKx1 indicates no DK selected, then compare sum_B5cx1 to S7_1 and flag discrepancies (or call validateB1c).", "If needed, implement/ensure the QuestionErrors mechanism used elsewhere in the project is consulted here so validation is skipped when prior errors exist.", "Optionally, implement/validate numeric precision constraints (3 decimals) if the survey framework requires enforcing precision at validation time."]}]
+
+🔄 [Batch 22] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📏 [Batch 22] Regeneration prompt: system=503 chars, user=118894 chars
+  📏 [Batch 22] Training context size: 15647 chars (~3911 tokens)
+  📏 [Batch 22] Total input: ~29849 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API for regeneration...
+  ✅ [Batch 28] Regeneration API call completed in 50.5s. Response length: 1842 chars
+  📊 [Batch 28] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 28] Regenerated scripts for QIDs: ['qList']
+
+    [DEBUG FLOW] [Batch 28] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['qList']
+    - qList: script length = 1418 chars
+
+🔍 [Batch 28] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 28] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ [Batch 26] API call completed in 149.9s. Response length: 12645 chars
+  📊 [Batch 26] Parsed 6 script(s) from model output
+  ✓ [Batch 26] Extracted scripts for QIDs: ['B5dDKx5', 'B5ex1', 'B5ex2', 'B5ex3', 'B5ex4', 'B5ex5']
+  📝 [Batch 26] First script preview (B5dDKx5, 677 chars):
+     tit B5dDKx5.<br>
+* Validate DK checkbox (B5dDKx5_5) against numeric cells for column 5 (B5ex5_1..B5ex5_4).<br>
+temporary.<br>
+sel if IsInProductionMode() and ( (B5dDKx5_5 = 1 and (not miss(B5ex5_1) or...
+
+    [DEBUG FLOW] [Batch 26] About to send to reviewer:
+    - Outputs dict has 6 entries
+    - QIDs in outputs: ['B5dDKx5', 'B5ex1', 'B5ex2', 'B5ex3', 'B5ex4', 'B5ex5']
+    - B5dDKx5: script length = 677 chars
+    - B5ex1: script length = 506 chars
+    - B5ex2: script length = 506 chars
+    - B5ex3: script length = 506 chars
+    - B5ex4: script length = 506 chars
+    - B5ex5: script length = 1239 chars
+
+🔍 [Batch 26] AsyncReviewerAgent: Reviewing 6 generated script(s) in ONE API call...
+  📏 [Batch 26] Reviewing 6 questions in 1 API call (vs 6 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 28] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['qList']
+
+  🔄 Async Loop 4/5 (Batch 28)
+
+🔄 [Batch 28] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 28] Loop 3: Reduced context to 5000 chars (from 11295)
+  📏 [Batch 28] Regeneration prompt: system=503 chars, user=104126 chars
+  📏 [Batch 28] Training context size: 11295 chars (~2823 tokens)
+  📏 [Batch 28] Total input: ~26157 tokens, max output: 8000 tokens
+  ⏳ [Batch 28] Calling OpenAI API for regeneration...
+  ✅ Parsed 6 findings from batch review
+
+    [DEBUG FLOW] [Batch 26] Reviewer returned:
+    - Findings list has 6 entries
+    - Passed: 5 questions: ['B5dDKx5', 'B5ex1', 'B5ex2', 'B5ex3', 'B5ex4']
+    - Failed: 1 questions: ['B5ex5']
+
+  🔄 Async Loop 2/5 (Batch 26)
+    [DEBUG] AsyncReviewer->AsyncTransformer feedback (first send, batch 26)
+    Count: 1 | QIDs: ['B5ex5']
+    Payload preview (first 2000 chars): [{"question_id": "B5ex5", "pass": false, "root_causes": ["DK checkbox variable name mismatch: expected validation references B5eDKx5 but the script uses B5dDKx5_5"], "instructions": ["Update the DK mutual-exclusion/presence checks to reference the DK variable named in the expected logic (B5eDKx5) instead of B5dDKx5_5, or confirm which DK variable is canonical and make the expected logic and all scripts consistent.", "Ensure the DK checked value comparison uses the correct checked code (script currently uses = 1; verify that matches the DK variable coding)."]}]
+
+🔄 [Batch 26] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📏 [Batch 26] Regeneration prompt: system=503 chars, user=115592 chars
+  📏 [Batch 26] Training context size: 16312 chars (~4078 tokens)
+  📏 [Batch 26] Total input: ~29023 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API for regeneration...
+  ✅ [Batch 28] Regeneration API call completed in 60.2s. Response length: 2570 chars
+  📊 [Batch 28] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 28] Regenerated scripts for QIDs: ['qList']
+
+    [DEBUG FLOW] [Batch 28] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['qList']
+    - qList: script length = 2335 chars
+
+🔍 [Batch 28] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 28] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ [Batch 22] Regeneration API call completed in 100.2s. Response length: 6643 chars
+  📊 [Batch 22] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 22] Regenerated scripts for QIDs: ['B5cx1']
+
+    [DEBUG FLOW] [Batch 22] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5cx1']
+    - B5cx1: script length = 6292 chars
+
+🔍 [Batch 22] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 22] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 28] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['qList']
+
+  🔄 Async Loop 5/5 (Batch 28)
+
+🔄 [Batch 28] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 28] Loop 4: Reduced context to 5000 chars (from 11295)
+  📏 [Batch 28] Regeneration prompt: system=503 chars, user=104313 chars
+  📏 [Batch 28] Training context size: 11295 chars (~2823 tokens)
+  📏 [Batch 28] Total input: ~26204 tokens, max output: 8000 tokens
+  ⏳ [Batch 28] Calling OpenAI API for regeneration...
+  ✅ [Batch 28] Regeneration API call completed in 23.1s. Response length: 741 chars
+  📊 [Batch 28] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 28] Regenerated scripts for QIDs: ['qList']
+
+    [DEBUG FLOW] [Batch 28] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['qList']
+    - qList: script length = 680 chars
+
+🔍 [Batch 28] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 28] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ [Batch 26] Regeneration API call completed in 75.4s. Response length: 3470 chars
+  📊 [Batch 26] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 26] Regenerated scripts for QIDs: ['B5ex5']
+
+    [DEBUG FLOW] [Batch 26] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5ex5']
+    - B5ex5: script length = 1764 chars
+
+🔍 [Batch 26] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 26] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 28] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 1 questions: ['qList']
+    - Failed: 0 questions: []
+    ✅ All 1 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 22] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5cx1']
+
+  🔄 Async Loop 3/5 (Batch 22)
+
+🔄 [Batch 22] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 22] Loop 2: Reduced context to 5000 chars (from 15647)
+  📏 [Batch 22] Regeneration prompt: system=503 chars, user=109413 chars
+  📏 [Batch 22] Training context size: 15647 chars (~3911 tokens)
+  📏 [Batch 22] Total input: ~27479 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API for regeneration...
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 26] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5ex5']
+
+  🔄 Async Loop 3/5 (Batch 26)
+
+🔄 [Batch 26] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 26] Loop 2: Reduced context to 5000 chars (from 16312)
+  📏 [Batch 26] Regeneration prompt: system=503 chars, user=105145 chars
+  📏 [Batch 26] Training context size: 16312 chars (~4078 tokens)
+  📏 [Batch 26] Total input: ~26412 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API for regeneration...
+  ✅ [Batch 26] Regeneration API call completed in 60.3s. Response length: 1993 chars
+  📊 [Batch 26] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 26] Regenerated scripts for QIDs: ['B5ex5']
+
+    [DEBUG FLOW] [Batch 26] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5ex5']
+    - B5ex5: script length = 1538 chars
+
+🔍 [Batch 26] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 26] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 26] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5ex5']
+
+  🔄 Async Loop 4/5 (Batch 26)
+
+🔄 [Batch 26] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 26] Loop 3: Reduced context to 5000 chars (from 16312)
+  📏 [Batch 26] Regeneration prompt: system=503 chars, user=105921 chars
+  📏 [Batch 26] Training context size: 16312 chars (~4078 tokens)
+  📏 [Batch 26] Total input: ~26606 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API for regeneration...
+  ✅ [Batch 22] Regeneration API call completed in 110.3s. Response length: 4335 chars
+  📊 [Batch 22] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 22] Regenerated scripts for QIDs: ['B5cx1']
+
+    [DEBUG FLOW] [Batch 22] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5cx1']
+    - B5cx1: script length = 3893 chars
+
+🔍 [Batch 22] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 22] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 22] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5cx1']
+
+  🔄 Async Loop 4/5 (Batch 22)
+
+🔄 [Batch 22] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 22] Loop 3: Reduced context to 5000 chars (from 15647)
+  📏 [Batch 22] Regeneration prompt: system=503 chars, user=107687 chars
+  📏 [Batch 22] Training context size: 15647 chars (~3911 tokens)
+  📏 [Batch 22] Total input: ~27047 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API for regeneration...
+  ✅ [Batch 26] Regeneration API call completed in 127.3s. Response length: 4928 chars
+  📊 [Batch 26] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 26] Regenerated scripts for QIDs: ['B5ex5']
+
+    [DEBUG FLOW] [Batch 26] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5ex5']
+    - B5ex5: script length = 4781 chars
+
+🔍 [Batch 26] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 26] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ [Batch 22] Regeneration API call completed in 85.5s. Response length: 3479 chars
+  📊 [Batch 22] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 22] Regenerated scripts for QIDs: ['B5cx1']
+
+    [DEBUG FLOW] [Batch 22] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5cx1']
+    - B5cx1: script length = 2386 chars
+
+🔍 [Batch 22] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 22] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 26] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5ex5']
+
+  🔄 Async Loop 5/5 (Batch 26)
+
+🔄 [Batch 26] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 26] Loop 4: Reduced context to 5000 chars (from 16312)
+  📏 [Batch 26] Regeneration prompt: system=503 chars, user=105386 chars
+  📏 [Batch 26] Training context size: 16312 chars (~4078 tokens)
+  📏 [Batch 26] Total input: ~26472 tokens, max output: 8000 tokens
+  ⏳ [Batch 26] Calling OpenAI API for regeneration...
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 22] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5cx1']
+
+  🔄 Async Loop 5/5 (Batch 22)
+
+🔄 [Batch 22] AsyncTransformerAgent: Regenerating 1 failed question(s)...
+  📉 [Batch 22] Loop 4: Reduced context to 5000 chars (from 15647)
+  📏 [Batch 22] Regeneration prompt: system=503 chars, user=109001 chars
+  📏 [Batch 22] Training context size: 15647 chars (~3911 tokens)
+  📏 [Batch 22] Total input: ~27376 tokens, max output: 8000 tokens
+  ⏳ [Batch 22] Calling OpenAI API for regeneration...
+  ✅ [Batch 26] Regeneration API call completed in 72.0s. Response length: 4467 chars
+  📊 [Batch 26] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 26] Regenerated scripts for QIDs: ['B5ex5']
+
+    [DEBUG FLOW] [Batch 26] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5ex5']
+    - B5ex5: script length = 3451 chars
+
+🔍 [Batch 26] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 26] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 26] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 1 questions: ['B5ex5']
+    - Failed: 0 questions: []
+    ✅ All 1 questions passed!
+    💾 Learning memory saved to learning_memory.json
+  ✅ [Batch 22] Regeneration API call completed in 112.6s. Response length: 4091 chars
+  📊 [Batch 22] Parsed 1 script(s) from regeneration output
+  ✓ [Batch 22] Regenerated scripts for QIDs: ['B5cx1']
+
+    [DEBUG FLOW] [Batch 22] About to send to reviewer:
+    - Outputs dict has 1 entries
+    - QIDs in outputs: ['B5cx1']
+    - B5cx1: script length = 2983 chars
+
+🔍 [Batch 22] AsyncReviewerAgent: Reviewing 1 generated script(s) in ONE API call...
+  📏 [Batch 22] Reviewing 1 questions in 1 API call (vs 1 calls previously)
+  ✅ Parsed 1 findings from batch review
+
+    [DEBUG FLOW] [Batch 22] Reviewer returned:
+    - Findings list has 1 entries
+    - Passed: 0 questions: []
+    - Failed: 1 questions: ['B5cx1']
+    📊 Batch 22 complete: 5 passed, 1 failed
+    💾 Learning memory saved to learning_memory.json
+✅ Batch 21/28 completed: 0 passed
+✅ Batch 22/28 completed: 5 passed
+✅ Batch 23/28 completed: 0 passed
+✅ Batch 24/28 completed: 0 passed
+✅ Batch 25/28 completed: 6 passed
+✅ Batch 26/28 completed: 6 passed
+✅ Batch 27/28 completed: 6 passed
+✅ Batch 28/28 completed: 2 passed
+✅ Chunk 3/3 complete (8 batches processed)
+✅ Output written to: output/SPSS_output_R77904.sps
+  Passing questions in this write: 85
+
+================================================================================
+ASYNC FILE PROCESSING COMPLETE: R77904.md
+  Total questions processed: 85/164
+  Total failures: 1
+================================================================================
+
+
+================================================================================
+✅ ASYNC PIPELINE COMPLETE in 2564.2s
+================================================================================
+(agents) sidchatterjee@Siddharthas-MacBook-Pro LLM_M3MR % 

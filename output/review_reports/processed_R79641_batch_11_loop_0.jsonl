@@ -1,0 +1,10 @@
+{"question_id": "QBrowser", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "QDevice", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "QStr", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "qHidMode", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "qIPs", "pass": false, "root_causes": ["Wrong variable referenced in validation (script uses 'qIPs' but expected Variable ID is 'qIPs_1')", "Validation logic does not correctly reflect a multi-coded item: using ~range(qIPs,1,1) on the wrong variable is incorrect and may not match actual coding (binary 0/1 or presence/missing)."], "instructions": ["Use the correct variable name: replace all occurrences of 'qIPs' in the script with the expected variable id 'qIPs_1'.", "Confirm the actual coding for the multi item (is qIPs_1 binary 0/1, or only coded 1 when selected?). Then adjust the validation accordingly:", "- If qIPs_1 is binary (0 = not selected, 1 = selected): use sel if miss(qIPs_1) or ~range(qIPs_1,0,1).", "- If qIPs_1 should only ever be 1 (and missing otherwise): use sel if miss(qIPs_1) or ~range(qIPs_1,1,1).", "After correcting the variable name and range logic, list respid and qIPs_1 (not qIPs)."]}
+{"question_id": "hidOEBatch", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "hidDVBatch", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "isLiveTest", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "hrespid", "pass": true, "root_causes": [], "instructions": []}
+{"question_id": "hsid", "pass": true, "root_causes": [], "instructions": []}

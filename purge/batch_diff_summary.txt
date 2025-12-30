@@ -1,0 +1,283 @@
+--- multi_batch_1.py	2025-10-27 14:56:23
++++ multi_batch_2.py	2025-10-28 23:29:07
+@@ -164,6 +164,12 @@
+                         lessons.append(f"Fix: {failure['instructions']}\n")
+         
+         return "\n".join(lessons) if lessons else ""
++
++def _trim_training_context(ctx: str, batch_id: int) -> str:
++    first = int(os.getenv("TRAINING_CONTEXT_FIRST_BATCH_CHARS", "80000"))
++    other = int(os.getenv("TRAINING_CONTEXT_OTHER_BATCH_CHARS", "60000"))
++    limit = first if batch_id == 1 else other
++    return ctx[:limit]
+ 
+ # Helper functions for enhancements
+ def _organize_training_context(training_context: str) -> str:
+@@ -277,28 +283,23 @@
+     """Global rate limiter to coordinate API calls across all agents with dynamic adjustment."""
+     
+     def __init__(self, max_concurrent: int = MAX_CONCURRENT_REQUESTS, delay: float = GLOBAL_RATE_LIMIT_DELAY):
++        CALL_TIMEOUT_SECONDS = int(os.getenv("CALL_TIMEOUT_SECONDS", "75"))
+         self.base_delay = delay
+         self.current_delay = delay
+         self.semaphore = asyncio.Semaphore(max_concurrent)
+-        self.last_request_time = 0
+-        self.request_times = []  # Track recent request times for performance analysis
+         self.error_count = 0
+         self.success_count = 0
+-        self.min_delay = 0.1 # Minimum delay
+-        self.max_delay = 3  # Maximum delay
++        self.request_times = []
++        self.min_delay = 0.1
++        self.max_delay = 3
++        self._cached_curated_context = None
++
+     
+     async def acquire(self):
+         await self.semaphore.acquire()
+-        current_time = time.time()
+-        time_since_last = current_time - self.last_request_time
+-        if time_since_last < self.current_delay:
+-            await asyncio.sleep(self.current_delay - time_since_last)
+-        self.last_request_time = time.time()
+-        self.request_times.append(current_time)
+-        
+-        # Keep only last 20 request times for analysis
+-        if len(self.request_times) > 20:
+-            self.request_times = self.request_times[-20:]
++        # micro-jitter to avoid herd effects; not a global gap
++        await asyncio.sleep(random.uniform(0, 0.15))
++
+     
+     def release(self):
+         self.semaphore.release()
+@@ -358,6 +359,7 @@
+ 
+ # Global rate limiter instance
+ rate_limiter = GlobalRateLimiter()
++CALL_TIMEOUT_SECONDS = int(os.getenv("CALL_TIMEOUT_SECONDS", "75"))
+ 
+ # Global learning memory manager instance
+ learning_memory = LearningMemoryManager() if ENABLE_LEARNING_MEMORY else None
+@@ -399,7 +401,12 @@
+                     if temperature is not None and _supports_temperature(self.model):
+                         completion_args["temperature"] = temperature
+                     
+-                    response = await self.client.chat.completions.create(**completion_args)
++                    
++                    response = await asyncio.wait_for(
++                        self.client.chat.completions.create(**completion_args),
++                        timeout=CALL_TIMEOUT_SECONDS
++                    )
++
+                     rate_limiter.record_success()  # Record successful API call
+                     return response.choices[0].message.content
+                     
+@@ -427,26 +434,42 @@
+         generation_template = self.processor.load_prompt_template('user', 'generation_prompt')
+         system_prompt = self.processor.load_prompt_template('system', 'system_prompt')
+         
++        MAX_USER_CHARS = int(os.getenv("MAX_USER_CHARS", "90000")) # Maximum characters allowed for the user prompt
++
++        # Build batch_content first
+         batch_content = "\n\n---\n\n".join([
+             self._format_question(q) for q in questions
+         ])
+         
+-        # ENHANCEMENT: Organize training context by type
++        # Check if we need to split the batch due to size
++        if len(batch_content) > MAX_USER_CHARS and len(questions) > 1:
++            mid = len(questions) // 2
++            left = await self.generate_batch_async(questions[:mid], training_context, function_def, batch_id)
++            right = await self.generate_batch_async(questions[mid:], training_context, function_def, batch_id)
++            merged = {**left, **right}
++            return merged
++        
++        # top-level flags
++        ENABLE_COT = os.getenv("ENABLE_COT", "false").lower() == "true"
++        ENABLE_ANTI_PATTERNS = os.getenv("ENABLE_ANTI_PATTERNS", "true").lower() == "true"
++
++        training_context = _trim_training_context(training_context, batch_id)
+         organized_context = _organize_training_context(training_context)
+         
+-        # ENHANCEMENT: Add learning memory lessons if available
+-        lessons = ""
+-        if learning_memory:
+-            question_types = [q.get('SelectType', 'unknown') for q in questions]
+-            lessons = learning_memory.get_relevant_lessons(question_types)
+-        
+-        # ENHANCEMENT: Inject anti-patterns and chain-of-thought
++        # Initialize enhanced_training first, then add enhancements
+         enhanced_training = organized_context
+-        if lessons:
+-            enhanced_training += f"\n\n{lessons}"
+-        enhanced_training += f"\n\n{_get_anti_patterns()}"
+-        enhanced_training += f"\n\n{_get_chain_of_thought_instructions()}"
+         
++        # ENHANCEMENT: Inject anti-patterns and/or chain-of-thought
++        if ENABLE_ANTI_PATTERNS:
++            anti_patterns = _get_anti_patterns()
++            if anti_patterns:
++                enhanced_training += f"\n\n{anti_patterns}"
++        if ENABLE_COT:
++            cot = _get_chain_of_thought_instructions()
++            if cot:
++                enhanced_training += f"\n\n{cot}"
++       
++
+         user_prompt = generation_template.replace('{TRAINING_CONTEXT}', enhanced_training)
+         user_prompt = user_prompt.replace('{BATCH_NUMBER}', '1')
+         user_prompt = user_prompt.replace('{BATCH_CONTENT}', batch_content)
+@@ -472,10 +495,18 @@
+             print(f"  📏 [Batch {batch_id}] Total input: ~{est_input_tokens} tokens, max output: {MAX_COMPLETION_TOKENS_TRANSFORMER} tokens")
+             print(f"  ⏳ [Batch {batch_id}] Calling OpenAI API (model: {self.model})...")
+             
++
++            # In AsyncTransformerAgent.generate_batch_async(...), before the API call:
++            def _cap_for_transformer(n):
++                # ~700–900 tokens per question + small overhead; cap at 8000
++                return min(8000, 900 * n + 1200)
++
++            max_tokens = _cap_for_transformer(len(questions))
++
+             start_time = time.time()
+             output = await self._make_api_call_with_retry(
+                 messages, 
+-                max_tokens=MAX_COMPLETION_TOKENS_TRANSFORMER,
++                max_tokens=max_tokens,
+                 temperature=0.2
+             )
+             elapsed = time.time() - start_time
+@@ -548,7 +579,11 @@
+         ])
+         
+         # ENHANCEMENT: Progressive context reduction
++       
++# Always cap the context before any further reduction
++        training_context = _trim_training_context(training_context, batch_id)
+         reduced_context = training_context
++
+         if PROGRESSIVE_CONTEXT_REDUCTION and loop_num > 1:
+             # Extract only examples relevant to failed patterns
+             context_limit = max(5000, 10000 // loop_num)  # Reduce more aggressively in later loops
+@@ -616,9 +651,15 @@
+             print(f"❌ [Batch {batch_id}] AsyncTransformerAgent regeneration error: {e}")
+             return {}
+     
++
+     def _format_question(self, question: Dict[str, Any]) -> str:
+-        """Format a single question for the prompt."""
+-        return json.dumps(question, indent=2, ensure_ascii=False)
++        KEYS = [
++            "Question ID","SelectType","answers","conditions",
++            "question_attributes","sub_questions","VariableType","Disabled","Question Label"
++        ]
++        pruned = {k: question.get(k) for k in KEYS if k in question}
++        return json.dumps(pruned, ensure_ascii=False, separators=(",",":"))
++
+     
+     def _extract_relevant_context(self, training_context: str, reviewer_feedback: List[Dict[str, Any]], 
+                                    char_limit: int) -> str:
+@@ -762,7 +803,12 @@
+                     if temperature is not None and _supports_temperature(self.model):
+                         completion_args["temperature"] = temperature
+                     
+-                    response = await self.client.chat.completions.create(**completion_args)
++                    
++                    response = await asyncio.wait_for(
++                        self.client.chat.completions.create(**completion_args),
++                        timeout=CALL_TIMEOUT_SECONDS
++                    )
++
+                     rate_limiter.record_success()  # Record successful API call
+                     return response.choices[0].message.content
+                     
+@@ -903,8 +949,19 @@
+ """
+                 questions_and_scripts.append(question_block)
+             
++            REVIEW_MAX_USER_CHARS = int(os.getenv("REVIEW_MAX_USER_CHARS", "80000"))
+             combined_questions = "\n".join(questions_and_scripts)
+             
++            if len(combined_questions) > REVIEW_MAX_USER_CHARS and len(valid_outputs) > 1:
++                # split qids in half and review twice
++                qids = list(valid_outputs.keys())
++                mid = len(qids) // 2
++                left = {k: valid_outputs[k] for k in qids[:mid]}
++                right = {k: valid_outputs[k] for k in qids[mid:]}
++                f_left = await self.review_batch_async(expected_logic, left, training_context, batch_id)
++                f_right = await self.review_batch_async(expected_logic, right, training_context, batch_id)
++                return f_left + f_right
++
+             user_content = self.prompt_template.replace('{TRAINING_CONTEXT}', training_context[:5000] + "...\n\n")
+             user_content = user_content.replace('{QUESTIONS_AND_SCRIPTS}', combined_questions)
+                 
+@@ -1095,6 +1152,7 @@
+         print("="*80)
+     
+     async def _process_file_async(self, gen_file: Path, training_context: str):
++        self._cached_curated_context = None
+         """Process a single generation file through parallel batched feedback loop."""
+         print("\n" + "="*80)
+         print(f"ASYNC PROCESSING: {gen_file.name}")
+@@ -1211,15 +1269,36 @@
+                     print(f"  ⚡ [Batch {batch_idx + 1}] Skipping pre-analysis (SKIP_PRE_ANALYSIS=true)")
+                     curated_training_context = training_context
+                 else:
+-                    # Call reviewer first to curate training examples
+-                    curated_training_context = await self.reviewer.pre_analyze_questions_async(
+-                        remaining_questions, training_context, batch_id=batch_idx + 1
+-                    )
++                    
++                    if self._cached_curated_context is None:
++                            self._cached_curated_context = await self.reviewer.pre_analyze_questions_async(
++                                remaining_questions, training_context, batch_id=batch_idx + 1
++                            )
++                    curated_training_context = self._cached_curated_context
++
+                 
+                 # Now generate with curated (or original) context
+                 outputs = await self.transformer.generate_batch_async(
+                     remaining_questions, curated_training_context, function_def, batch_id=batch_idx + 1
+                 )
++
++                if not outputs:
++                    # Treat as batch failure; prepare synthetic findings for all remaining
++                    findings = [
++                        {
++                            "question_id": q.get("Question ID", "UNKNOWN"),
++                            "pass": False,
++                            "root_causes": ["Model returned empty output"],
++                            "instructions": ["Retry with reduced context or smaller batch size"]
++                        }
++                        for q in remaining_questions
++                    ]
++                    self._log_batch_findings(gen_file, findings, batch_idx, loop)
++                    # Narrow remaining_questions for next loop and continue
++                    remaining_qids = {f["question_id"] for f in findings}
++                    remaining_questions = [q for q in remaining_questions if q.get("Question ID") in remaining_qids]
++                    continue
++
+                 # Fallback: if model returned empty for this loop, retry once with smaller context
+                 if len(outputs) == 0 and curated_training_context:
+                     print("    🔁 Empty output detected; retrying once with reduced curated context (2000 chars)...")
+@@ -1257,6 +1336,19 @@
+                     batch_id=batch_idx + 1, loop_num=loop
+                 )
+             
++                if not outputs:
++                    findings = [
++                        {"question_id": q.get("Question ID","UNKNOWN"),
++                        "pass": False,
++                        "root_causes": ["Model returned empty output"],
++                        "instructions": ["Retry with reduced context or smaller batch size"]}
++                        for q in remaining_questions
++                    ]
++                    self._log_batch_findings(gen_file, findings, batch_idx, loop)
++                    remaining_ids = {f["question_id"] for f in findings}
++                    remaining_questions = [q for q in remaining_questions if q.get("Question ID") in remaining_ids]
++                    continue
++
+             # Debug: Check what's being sent to reviewer
+             print(f"\n    [DEBUG FLOW] [Batch {batch_idx + 1}] About to send to reviewer:")
+             print(f"    - Outputs dict has {len(outputs)} entries")
